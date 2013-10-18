@@ -42,10 +42,10 @@ void Mandelbrot::gen_fractal()
 			}
 		}
 
-		//RGB respectively, when iter = MAXITER, the color will be black
-		m_bitmap[x * height * 4 + y * 4] = pow(iter / MAXITER, 0.6) * 255;
-		m_bitmap[x * height * 4 + y * 4 + 1] = pow(iter / MAXITER, 0.5) * 255;
-		m_bitmap[x * height * 4 + y * 4 + 2] = pow(iter / MAXITER, 0.4) * 255;
+		//RGB respectively, when iter = MAXITER, the color will be white
+		m_bitmap[x * height * 4 + y * 4] = pow( ((double) iter) / MAXITER, 0.6) * 255;
+		m_bitmap[x * height * 4 + y * 4 + 1] = pow( ((double) iter) / MAXITER, 0.5) * 255;
+		m_bitmap[x * height * 4 + y * 4 + 2] = pow( ((double) iter) / MAXITER, 0.4) * 255;
 		m_bitmap[x * height * 4 + y * 4 + 3] = 255;
 	}
 }
