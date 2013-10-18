@@ -5,7 +5,6 @@ void Buddhabrot::gen_fractal()
 {
 	// Real (-2.5, 1)
 	// Imaginary (-1, 1)
-    
     // Initialize a bucket array (one integer for each pixel) (this is the outer bucket array)
 
     // iterate over the following several thousand times (at least more times than # of pixels)
@@ -26,6 +25,7 @@ void Buddhabrot::gen_fractal()
      // Which are merged after the computation has finished.
      
      // Parallelizing is not required, but will save you a lot of time.
+	 int k;
 	 int width = get_width(), height = get_height();
 	 const int NUM_PIXELS = width * height;
 }
