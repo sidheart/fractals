@@ -3,8 +3,6 @@ using namespace std;
 
 void Buddhabrot::gen_fractal()
 {
-
-   
 	// Real (-2.5, 1)
 	// Imaginary (-1, 1)
     
@@ -28,7 +26,13 @@ void Buddhabrot::gen_fractal()
      // Which are merged after the computation has finished.
      
      // Parallelizing is not required, but will save you a lot of time.
-     
+	 int width = get_width(), height = get_height();
+	 const int NUM_PIXELS = width * height;
+
+	 for(int x = 0; i < NUM_PIXELS; i++)
+	 {
+
+	 }
 
 }
     
