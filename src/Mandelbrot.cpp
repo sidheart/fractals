@@ -46,5 +46,6 @@ void Mandelbrot::gen_fractal()
 		m_bitmap[x * height * 4 + y * 4] = pow(iter / MAXITER, 0.6) * 255;
 		m_bitmap[x * height * 4 + y * 4 + 1] = pow(iter / MAXITER, 0.5) * 255;
 		m_bitmap[x * height * 4 + y * 4 + 2] = pow(iter / MAXITER, 0.4) * 255;
+		m_bitmap[x * height * 4 + y * 4 + 3] = 255;
 	}
 }
