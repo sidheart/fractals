@@ -28,12 +28,6 @@ void Buddhabrot::gen_fractal()
      // Parallelizing is not required, but will save you a lot of time.
 	 int width = get_width(), height = get_height();
 	 const int NUM_PIXELS = width * height;
-
-	 for(int x = 0; i < NUM_PIXELS; i++)
-	 {
-
-	 }
-
 }
     
 
