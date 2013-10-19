@@ -81,6 +81,7 @@ void Buddhabrot::gen_fractal()
 	for(int i = 0; i < height; i++) {
 		for(int j = 0; j < width; j++) {
 			buckets[i][j] /= max_value;
+			//THERES A PROBLEM HERE, FIND IT ASSHOLE
 			m_bitmap[j * height * 4 + i * 4] = buckets[i][j] * 255;
 			m_bitmap[j * height * 4 + i * 4 + 1] = buckets[i][j] * 255;
 			m_bitmap[j * height * 4 + i * 4 + 2] = buckets[i][j] * 255;
