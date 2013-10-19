@@ -1,7 +1,8 @@
 #include <iostream>
 #include <time.h>
 #include <cstdlib>
-#include "Mandelbrot.h"
+#include "Buddhabrot.h"
+
 using namespace std;
 
 int main(int argc, char *argv[])
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
     }
 
     // Create a fractal object
-	Mandelbrot my_fractal(a);
+	Buddhabrot my_fractal(a);
 	cout << "Fractal Allocated" << endl;
 
     // Generate the fractal

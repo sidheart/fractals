@@ -32,7 +32,7 @@ void Mandelbrot::gen_fractal()
 		for(iter; iter < MAXITER; iter++) {
 			//Real component is a^2 - b^2
 			z_temp = pow(z_r, 2.0) - pow(z_i, 2.0) + c_r;
-			//Imaginary component is 2abi
+			//Imaginary component is -2abi but drop the negative since we're taking magnitude
 			z_i = 2 * z_r * z_i + c_i;
 			z_r = z_temp;
 
