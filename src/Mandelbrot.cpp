@@ -21,8 +21,8 @@ void Mandelbrot::gen_fractal()
 	const int NUM_PIXELS = width * height;
 
 	for(int i = 0; i < NUM_PIXELS; i++) {
-		int x = i % height;
-		int y = i / height;
+		int x = i % width;
+		int y = i / width;
 		int iter = 0;
 		double c_r = (((double) x) / width) * 3.5 - 2.5;
 		double c_i = (((double) y) / height) * 2 - 1;
