@@ -63,10 +63,11 @@ void Buddhabrot::gen_fractal()
 				break;
 			}
 
-			int x = (int) ((z_r / 2) * (width - 1));
-			int y = (int) ((z_i / 2) * (height - 1));
-			x = abs(x); y = abs(y);
-			buckets_temp[height * x + y] = buckets_temp[height * x + y] + 1;
+			//x and y for range of pixels, causes variation in size of final image 
+			int x = (int) (((z_r + 2) / 3) * (width));
+			int y = (int) (((z_i + 2) / 3) * (height));
+
+			buckets_temp[height * x + y]++;
 	 	}
 
 	}
@@ -79,7 +80,6 @@ void Buddhabrot::gen_fractal()
 
 	for(int i = 0; i < NUM_PIXELS; i++) {
 			buckets[i] /= max_value;
-			cout << buckets[i];
 			m_bitmap[i * 4] = (int) (buckets[i] * 255);
 			m_bitmap[i * 4 + 1] = (int) (buckets[i] * 255);
 			m_bitmap[i * 4 + 2] = (int) (buckets[i] * 255);
