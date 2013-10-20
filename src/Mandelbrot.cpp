@@ -20,12 +20,16 @@ void Mandelbrot::gen_fractal()
 	int width = get_width(), height = get_height();
 	const int NUM_PIXELS = width * height;
 
+	#pragma omp parallel for
 	for(int i = 0; i < NUM_PIXELS; i++) {
 		int x = i % width;
 		int y = i / width;
 		int iter = 0;
-		double c_r = (((double) x) / width) * 3.5 - 2.5;
-		double c_i = (((double) y) / height) * 2 - 1;
+		//Increasing multiple of x stretches horizontally
+		//Increasing addition of x moves to the right
+		//Increasing multiple of y compresses vertically
+		double c_r = (((double) x) / width) * 2.8 - 2;
+		double c_i = (((double) y) / height) * 2.7 - 1.3; 
 		double z_r = 0, z_i = 0;
 		double z_temp;
 
@@ -43,9 +47,9 @@ void Mandelbrot::gen_fractal()
 		}
 
 		//RGB respectively, when iter = MAXITER, the color will be white
-		m_bitmap[x * width * 4 + y * 4] = pow( ((double) iter) / MAXITER, 0.6) * 255;
-		m_bitmap[x * width * 4 + y * 4 + 1] = pow( ((double) iter) / MAXITER, 0.5) * 255;
-		m_bitmap[x * width * 4 + y * 4 + 2] = pow( ((double) iter) / MAXITER, 0.4) * 255;
-		m_bitmap[x * width * 4 + y * 4 + 3] = 255;
+		m_bitmap[y * width * 4 + x * 4] = pow( ((double) iter) / MAXITER, 0.4) * 255;
+		m_bitmap[y * width * 4 + x * 4 + 1] = pow( ((double) iter) / MAXITER, 0.6) * 255;
+		m_bitmap[y * width * 4 + x * 4 + 2] = pow( ((double) iter) / MAXITER, 0.5) * 255;
+		m_bitmap[y * width * 4 + x * 4 + 3] = 255;
 	}
 }

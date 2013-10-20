@@ -3,6 +3,32 @@
 #include "Buddhabrot.h"
 using namespace std;
 
+bool IsMandelbrot(double c_r, double c_i) {
+	double z_r = 0, z_i = 0, z_temp;	
+	double q = pow(c_r - .25, 2.0) + pow(c_i, 2.0);
+
+	//Checks if point is in main cardioid
+	if(q * (q + (c_r - .25)) < .25 * pow(c_i, 2.0)) {
+		return true;
+	}
+
+	//Check if point is in period 2 bulb
+	if(pow(c_r + 1, 2.0) + pow(c_i, 2.0) < .0625) {
+		return true;
+	}
+
+	for(int iter = 0; iter < MAXITER; iter++) {
+		z_temp = pow(z_r, 2.0) - pow(z_i, 2.0) + c_r;
+		z_i = 2 * z_r * z_i + c_i;
+		z_r = z_temp;
+
+		if(pow(z_r, 2.0) + pow(z_i, 2.0) > 4) { 
+			return false;
+		}
+	}
+	return true;
+}
+
 void Buddhabrot::gen_fractal()
 {
 	// Real (-2.5, 1)
@@ -39,14 +65,18 @@ void Buddhabrot::gen_fractal()
 	}
 
 
-	for(int i = 0; i < NUM_PIXELS * 2; i++) {
+	for(int i = 0; i < NUM_PIXELS * 5; i++) {
 	 	double buckets_temp [NUM_PIXELS];
 		double z_r = 0, z_i = 0;
 		double z_temp;
-		double c_r = (double) rand() / RAND_MAX * 3.5 - 2.5;
-		double c_i = (double) rand() / RAND_MAX * 2 - 1;
+		double c_r, c_i;
 	 	int iter = 0;
 		
+		do {
+			c_r = (double) rand() / RAND_MAX * 3.5 - 2.5;
+			c_i = (double) rand() / RAND_MAX * 2 - 1;			
+		} while(IsMandelbrot(c_r, c_i));
+
 		for(int j = 0; j < NUM_PIXELS; j++) {
 				buckets_temp[j] = buckets[j];
 	 	}
@@ -63,11 +93,16 @@ void Buddhabrot::gen_fractal()
 				break;
 			}
 
-			//x and y for range of pixels, causes variation in size of final image 
-			int x = (int) (((z_r + 2) / 3) * (width));
-			int y = (int) (((z_i + 2) / 3) * (height));
-
-			buckets_temp[height * x + y]++;
+			//x shifts up for decrease down for increase
+			//Compresses vertically for increasing divisor
+			//y shifts right for increase left for decrease
+			//Compresses horizontally for increasing divisor
+			int x = (int) (((z_r + 1.6) / 2.5) * (width));
+			int y = (int) (((z_i + 1.15) /  2.3) * (height));
+			
+			if(0 <= x && x < width && 0 <= y && y < height) {
+				buckets_temp[height * x + y]++;
+			}
 	 	}
 
 	}
