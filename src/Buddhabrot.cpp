@@ -1,5 +1,6 @@
-#include <time.h>
 #include <cmath>
+#include <vector>
+#include <time.h>
 #include "Buddhabrot.h"
 using namespace std;
 
@@ -65,7 +66,7 @@ void Buddhabrot::gen_fractal()
 	}
 
 
-	for(int i = 0; i < NUM_PIXELS * 5; i++) {
+	for(int i = 0; i < NUM_PIXELS * 2; i++) {
 	 	double buckets_temp [NUM_PIXELS];
 		double z_r = 0, z_i = 0;
 		double z_temp;
@@ -98,7 +99,7 @@ void Buddhabrot::gen_fractal()
 			//y shifts right for increase left for decrease
 			//Compresses horizontally for increasing divisor
 			int x = (int) (((z_r + 1.6) / 2.5) * (width));
-			int y = (int) (((z_i + 1.15) /  2.3) * (height));
+			int y = (int) (((z_i + 1.03) /  2.05) * (height));
 			
 			if(0 <= x && x < width && 0 <= y && y < height) {
 				buckets_temp[height * x + y]++;
@@ -116,8 +117,8 @@ void Buddhabrot::gen_fractal()
 	for(int i = 0; i < NUM_PIXELS; i++) {
 			buckets[i] /= max_value;
 			m_bitmap[i * 4] = (int) (buckets[i] * 255);
-			m_bitmap[i * 4 + 1] = (int) (buckets[i] * 255);
-			m_bitmap[i * 4 + 2] = (int) (buckets[i] * 255);
+			m_bitmap[i * 4 + 1] = (int) (buckets[i] * 51);
+			m_bitmap[i * 4 + 2] = (int) (buckets[i] * 51);
 			m_bitmap[i * 4 + 3] = 255;
 	}
 }
