@@ -36,7 +36,7 @@ void Mandelbrot::gen_fractal()
 		for(iter; iter < MAXITER; iter++) {
 			//Real component is a^2 - b^2
 			z_temp = pow(z_r, 2.0) - pow(z_i, 2.0) + c_r;
-			//Imaginary component is -2abi but drop the negative since we're taking magnitude
+			//Imaginary component is 2abi 
 			z_i = 2 * z_r * z_i + c_i;
 			z_r = z_temp;
 
@@ -47,9 +47,17 @@ void Mandelbrot::gen_fractal()
 		}
 
 		//RGB respectively, when iter = MAXITER, the color will be white
-		m_bitmap[y * width * 4 + x * 4] = pow( ((double) iter) / MAXITER, 0.4) * 255;
-		m_bitmap[y * width * 4 + x * 4 + 1] = pow( ((double) iter) / MAXITER, 0.6) * 255;
-		m_bitmap[y * width * 4 + x * 4 + 2] = pow( ((double) iter) / MAXITER, 0.5) * 255;
+		if(iter == MAXITER) {
+			m_bitmap[y * width * 4 + x * 4] = pow( (((double) (width - x)) * iter)/ (width * MAXITER), 0.7) * 178;
+			m_bitmap[y * width * 4 + x * 4 + 1] = pow( (((double) (width - x)) * iter)/ (width * MAXITER), 0.8) * 102;
+			m_bitmap[y * width * 4 + x * 4 + 2] = pow( (((double) (width - x)) * iter)/ (width * MAXITER), 0.4) * 255;
+
+		} 
+		else {
+			m_bitmap[y * width * 4 + x * 4] = 229; 
+			m_bitmap[y * width * 4 + x * 4 + 1] = 255; 
+			m_bitmap[y * width * 4 + x * 4 + 2] = 204;
+		}
 		m_bitmap[y * width * 4 + x * 4 + 3] = 255;
 	}
 }

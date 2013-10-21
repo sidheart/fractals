@@ -66,7 +66,7 @@ void Buddhabrot::gen_fractal()
 	}
 
 
-	for(int i = 0; i < NUM_PIXELS * 2; i++) {
+	for(int i = 0; i < NUM_PIXELS * 15; i++) {
 	 	double buckets_temp [NUM_PIXELS];
 		double z_r = 0, z_i = 0;
 		double z_temp;

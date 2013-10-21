@@ -1,5 +1,5 @@
 #ifndef FRACTAL_H
-#define FRACAL_H
+#define FRACTAL_H
 
 #include<string>
 #include<cstdlib>
